@@ -1,0 +1,61 @@
+
+class DicePlayer {
+
+	public final static int WINSCORE = 60;
+	public static String rules;
+	public static int diceRollCount;
+	public static int diceRoll;
+	public int score;
+
+	public void Roll() {
+		diceRoll = (int) (Math.random() * 6) + 1;
+		score = diceRoll + score;
+		diceRollCount++;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public int getRoll() {
+		return diceRoll;
+	}
+
+}
+
+public class StaticAndFinal {
+
+	public static void main(String[] args) {
+
+		DicePlayer.rules = "Take turns rolling the dice. The first player to reach a score of 60 wins!\n";
+		System.out.println(DicePlayer.rules);
+
+		DicePlayer player1 = new DicePlayer();
+		DicePlayer player2 = new DicePlayer();
+		DicePlayer player3 = new DicePlayer();
+
+		while (true) {
+
+			player1.Roll();
+			System.out.println("Player 1 Rolled a: " + player1.getRoll() + ". Total Score: " + player1.getScore());
+			if (player1.score >= DicePlayer.WINSCORE) {
+				System.out.println("Player 1 has won with a score of: " + player1.score + ". The die were cast " + DicePlayer.diceRollCount + " times total.");
+				break;
+			}
+			player2.Roll();
+			System.out.println("Player 2 Rolled a: " + player2.getRoll() + ". Total Score: " + player2.getScore());
+			if (player2.score >= DicePlayer.WINSCORE) {
+				System.out.println("Player 2 has won with a score of: " + player2.score + ". The die were cast " + DicePlayer.diceRollCount + " times total.");
+				break;
+			}
+			player3.Roll();
+			System.out.println("Player 3 Rolled a: " + player3.getRoll() + ". Total Score: " + player3.getScore());
+			if (player3.score >= DicePlayer.WINSCORE) {
+				System.out.println("Player 3 has won with a score of: " + player3.score + ". The die were cast " + DicePlayer.diceRollCount + " times total.");
+				break;
+			}
+		}
+
+	}
+
+}
